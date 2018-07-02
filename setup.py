@@ -9,7 +9,7 @@ DESCRIPTION = "Python library to access the REST interface of a CMDBuild server"
 URL = "https://github.com/blazehu/pycmdbuild/tree/master"
 EMAIL = "viease@foxmail.com"
 AUTHOR = "yhhu"
-VERSION = "0.1"
+VERSION = "0.1.1"
 
 
 def get_version(project='cmdbuild'):
