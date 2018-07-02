@@ -168,7 +168,7 @@ class CMDBuild(object):
         """
         Return relation id of specified domain.
         """
-        path = "domains/{}/relations/".format(name)
+        path = "domains/{}/relations".format(name)
         return self.request(path=path, method=METHOD_POST, data=data)
 
     def class_list(self):
