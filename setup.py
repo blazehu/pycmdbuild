@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 # Package meta-data.
 NAME = "pycmdbuild"
 DESCRIPTION = "Python library to access the REST interface of a CMDBuild server"
-URL = "git@github.com:blazehu/pycmdbuild.git"
+URL = "https://github.com/blazehu/pycmdbuild/tree/master"
 EMAIL = "viease@foxmail.com"
 AUTHOR = "yhhu"
 VERSION = "0.1"
