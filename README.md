@@ -70,6 +70,14 @@ get_relation_details | GET   /domains/{type}/relations/{id}/ |
 ### Documentation For Authorization
 
 
-
+If you want update or delete your card  you should get pk first. Cmdbuild's api is not restful, we can’t use patch, only update all (put).
+So you can do that:
+```
+def update_card(self, classe, card, description):
+    instance = client.class_get_cards_by_type()
+    id = instance["_id"]
+    client.class_update_card()
+```
+The same goes for deletion, you can add compare and retry function to guarantee reliability. 
 
 
