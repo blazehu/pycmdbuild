@@ -7,17 +7,17 @@ import json
 class Logger(object):
     def __init__(self, name):
         """
-        :param name:    日志记录的用例名
+        :param name:    Case name for logging
         """
         self.logger = logging.getLogger(name)
         self.logger.setLevel(logging.DEBUG)
-        # 日志格式
+        # log format
         formatter = logging.Formatter('%(asctime)s.%(msecs)03d %(process)d %(name)s - %(levelname)s - %(message)s',
                                       datefmt="%Y-%m-%d %H:%M:%S")
-        # 输出到控制台
+        # output to console
         cn = logging.StreamHandler()
         cn.setFormatter(formatter)
-        # 添加handle
+        # add handle
         self.logger.addHandler(cn)
 
     def get_logger(self):
@@ -30,8 +30,8 @@ METHOD_GET = "GET"
 METHOD_PUT = "PUT"
 METHOD_POST = "POST"
 METHOD_DELETE = "DELETE"
-INFO = 'CMDBuild python lib version: v0.1'
-VERSION = 'v0.1'
+INFO = 'CMDBuild python lib version: v0.2'
+VERSION = 'v0.2'
 
 
 class CMDBuild(object):
@@ -94,7 +94,7 @@ class CMDBuild(object):
         raise requests.RequestException("CMDBuild - ERROR: Don't Get Session ID")
 
     def api(self, path):
-        return "{host}/services/rest/v2/{path}/".format(host=self.host.strip('/'), path=path.strip())
+        return "{host}/services/rest/v3/{path}/".format(host=self.host.strip('/'), path=path.strip())
 
     def request(self, path, method="GET", data=None, params=None):
         api = self.api(path)
@@ -106,14 +106,16 @@ class CMDBuild(object):
         except:
             ret = dict(errors=[dict(message=resp.text)])
         if self.error_status_code(resp.status_code):
-            logger.error("CMDBuild - INFO: {0} - {1} - Data: {2}".format(method, resp.status_code, data))
+            logger.error("CMDBuild - INFO: {0} - {1}".format(method, resp.status_code))
             resp.raise_for_status()
         return resp.status_code, ret
 
     def connect(self):
         data = dict(username=self.username, password=self.password)
         path = "sessions"
-        resp_status, ret = self.request(path=path, method=METHOD_POST, data=data)
+        params = dict(scope="service", returnId="true") 
+        #"scope=service&returnId=true"
+        resp_status, ret = self.request(path=path, method=METHOD_POST, data=data, params=params)
         self.session_id = self.get_session_id(ret)
         return self.session_id
 
