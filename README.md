@@ -27,12 +27,12 @@ client.connect()
 
 client.session_info()
 client.lookup_types_info()
-client.domains_list()
+client.domain_list()
 ```
 
 ### Documentation for API Endpoints
 
-All URIs are relative to https://cmdb_host/services/rest/v2
+All URIs are relative to https://cmdb_host/services/rest/v3
 
 filter_data: {"simple": {"attribute": attribute,"operator": operator,"value": [value] }
 
