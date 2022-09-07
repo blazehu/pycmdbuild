@@ -22,21 +22,21 @@ from cmdbuild.client import CMDBuild
 ```
 from cmdbuild.client import CMDBuild
 
-client = CMDBuild(CMDB_HOST, CMDB_USERNAME, CMDB_PASSWORD)
+client = CMDBuild(CMDB_URL, CMDB_USERNAME, CMDB_PASSWORD)
 client.connect()
 
 client.session_info()
 client.lookup_types_info()
-client.domains_list()
+client.domain_list()
 ```
 
 ### Documentation for API Endpoints
 
-All URIs are relative to https://cmdb_host/services/rest/v2
+All URIs are relative to https://cmdb_host/services/rest/v3
 
 filter_data: {"simple": {"attribute": attribute,"operator": operator,"value": [value] }
 
-filter_dict: {"attribute": filter_data}}, 多个过滤条件 {"attribute": {"and": [filter1, filter2]}}
+filter_dict: {"attribute": filter_data}}, Multiple filters {"attribute": {"and": [filter1, filter2]}}
 
 filter_list: [{"attribute": "A", "value": "a", "fuzz": True},]
 
